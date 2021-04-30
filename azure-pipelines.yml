@@ -18,8 +18,8 @@ steps:
     subscriptionId: ${{ variables.subscriptionID_var }}
     location: 'South India'
     templateLocation: 'URL of the file'
-    csmFileLink: 'https://raw.githubusercontent.com/xxxxxxxxx/master/201-key-vault-secret-create/azuredeploy.json'
-    #csmParametersFileLink: 'https://raw.githubusercontent.com/xxxxxxxxx/master/201-key-vault-secret-create/parameters.json'
+    csmFileLink: 'https://raw.githubusercontent.com/sudipto92/azureDevop-arm/main/azuredeploy.json'
+    #csmParametersFileLink: 'https://raw.githubusercontent.com/sudipto92/azureDevop-arm/main/parameters.json'
     overrideParameters: '-storageName test3322storage12345 -location eastus'
     deploymentMode: 'Incremental'
   displayName: 'Creating Resource Group'
@@ -33,8 +33,8 @@ steps:
     resourceGroupName: ${{ variables.resouceGroup_var }}
     location: 'South India'
     templateLocation: 'URL of the file'
-    csmFileLink: 'https://raw.githubusercontent.com/xxxxxxxxx/master/201-key-vault-secret-create/kv-azuredeploy.json'
-    csmParametersFileLink: 'https://raw.githubusercontent.com/xxxxxxxxx/master/201-key-vault-secret-create/parameters.json'
+    csmFileLink: 'https://raw.githubusercontent.com/sudipto92/azureDevop-arm/main/kv-azuredeploy.json'
+    csmParametersFileLink: 'https://raw.githubusercontent.com/sudipto92/azureDevop-arm/main/parameters.json'
     overrideParameters: '-keyvault_name testing5555 -keyName keyVaultK -location eastus'
     deploymentMode: 'Incremental'
   displayName: 'Creating Keyvault and Adding key'
@@ -48,8 +48,8 @@ steps:
     resourceGroupName: ${{ variables.resouceGroup_var }}
     location: 'South India'
     templateLocation: 'URL of the file'
-    csmFileLink: 'https://raw.githubusercontent.com/xxxxxxxxx/master/201-key-vault-secret-create/blob-azuredeploy.json'
-    #csmParametersFileLink: 'https://raw.githubusercontent.com/xxxxxxxxx/master/201-key-vault-secret-create/parameters.json'
+    csmFileLink: 'https://raw.githubusercontent.com/sudipto92/azureDevop-arm/main/blob-azuredeploy.json'
+    #csmParametersFileLink: 'https://raw.githubusercontent.com/sudipto92/azureDevop-arm/main/parameters.json'
     overrideParameters: '-storageAccount test3322storage12345'
     deploymentMode: 'Incremental'
   displayName: 'Creating blobs in storage account'
@@ -63,8 +63,8 @@ steps:
     resourceGroupName: ${{ variables.resouceGroup_var }}
     location: 'South India'
     templateLocation: 'URL of the file'
-    csmFileLink: 'https://raw.githubusercontent.com/xxxxxxxxx/master/201-key-vault-secret-create/acr.json'
-    #csmParametersFileLink: 'https://raw.githubusercontent.com/xxxxxxxxx/master/201-key-vault-secret-create/parameters.json'
+    csmFileLink: 'https://raw.githubusercontent.com/sudipto92/azureDevop-arm/main/acr.json'
+    #csmParametersFileLink: 'https://raw.githubusercontent.com/sudipto92/azureDevop-arm/main/parameters.json'
     overrideParameters: '-acrName acrdemo5645'
     deploymentMode: 'Incremental'
   displayName: 'Creating ACR'
