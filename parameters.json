@@ -1,0 +1,92 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "keyvault_name": {
+            "value": "testvaulte232"
+        },
+        "location": {
+            "value": "eastus"
+        },
+        "sku": {
+            "value": "Standard"
+        },
+        "accessPolicies": {
+            "value": [
+                {
+                    "objectId": "f3240413-db7d-45dd-8b12-b466425983ec",
+                    "tenantId": "3a904252-8b95-4c7c-b37b-0846100d0308",
+                    "permissions": {
+                        "keys": [
+                            "Get",
+                            "List",
+                            "Update",
+                            "Create",
+                            "Import",
+                            "Delete",
+                            "Recover",
+                            "Backup",
+                            "Restore"
+                        ],
+                        "secrets": [
+                            "Get",
+                            "List",
+                            "Set",
+                            "Delete",
+                            "Recover",
+                            "Backup",
+                            "Restore"
+                        ],
+                        "certificates": [
+                            "Get",
+                            "List",
+                            "Update",
+                            "Create",
+                            "Import",
+                            "Delete",
+                            "Recover",
+                            "Backup",
+                            "Restore",
+                            "ManageContacts",
+                            "ManageIssuers",
+                            "GetIssuers",
+                            "ListIssuers",
+                            "SetIssuers",
+                            "DeleteIssuers"
+                        ]
+                    },
+                    "applicationId": ""
+                }
+            ]
+        },
+        "tenant": {
+            "value": "3a904252-8b95-4c7c-b37b-0846100d0308"
+        },
+        "enabledForDeployment": {
+            "value": false
+        },
+        "enabledForTemplateDeployment": {
+            "value": false
+        },
+        "enabledForDiskEncryption": {
+            "value": false
+        },
+        "enableRbacAuthorization": {
+            "value": false
+        },
+        "enableSoftDelete": {
+            "value": false
+        },
+        "softDeleteRetentionInDays": {
+            "value": 90
+        },
+        "networkAcls": {
+            "value": {
+                "defaultAction": "allow",
+                "bypass": "AzureServices",
+                "ipRules": [],
+                "virtualNetworkRules": []
+            }
+        }
+    }
+}
