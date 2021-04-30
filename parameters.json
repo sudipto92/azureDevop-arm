@@ -14,8 +14,8 @@
         "accessPolicies": {
             "value": [
                 {
-                    "objectId": "f3240413-db7d-45dd-8b12-b466425983ec",
-                    "tenantId": "3a904252-8b95-4c7c-b37b-0846100d0308",
+                    "objectId": "db0f3a31-d21b-44b2-aec2-f829863fdbf4",
+                    "tenantId": "0de8bd47-542b-4e6e-ad74-93ec769f9a5b",
                     "permissions": {
                         "keys": [
                             "Get",
@@ -60,7 +60,7 @@
             ]
         },
         "tenant": {
-            "value": "3a904252-8b95-4c7c-b37b-0846100d0308"
+            "value": "0de8bd47-542b-4e6e-ad74-93ec769f9a5b"
         },
         "enabledForDeployment": {
             "value": false
