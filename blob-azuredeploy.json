@@ -1,0 +1,79 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"blob1": {
+			"type": "String",
+			"defaultValue": "logs"
+		},
+		"blob2": {
+			"type": "String",
+			"defaultValue": "poc"
+		},
+		"blob3": {
+			"type": "String",
+			"defaultValue": "mvp"
+		},
+		"resourceGroup": {
+			"type": "String",
+			"defaultValue": "Devops_init"
+		},
+		"storageAccount": {
+			"type": "String",
+			"defaultValue": "test3322storage12345"
+		},
+		"location": {
+			"type": "String",
+			"defaultvalue": "eastus"
+		}
+	},
+	"variables": {},
+	"resources": [{
+		"type": "Microsoft.Storage/storageAccounts",
+		"apiVersion": "2018-02-01",
+		"name": "[parameters('storageAccount')]",
+		"location": "[resourceGroup().location]",
+		"tags": {
+			"displayName": "[parameters('storageAccount')]"
+		},
+		"sku": {
+			"name": "Standard_LRS"
+		},
+		"kind": "StorageV2",
+		"properties": {},
+		"resources": [{
+				"type": "blobServices/containers",
+				"apiVersion": "2018-03-01-preview",
+				"name": "[concat('default/', parameters('blob1'))]",
+				"dependsOn": [
+					"[parameters('storageAccount')]"
+				],
+				"properties": {
+					"publicAccess": "Blob"
+				}
+			},
+			{
+				"type": "blobServices/containers",
+				"apiVersion": "2018-03-01-preview",
+				"name": "[concat('default/', parameters('blob2'))]",
+				"dependsOn": [
+					"[parameters('storageAccount')]"
+				],
+				"properties": {
+					"publicAccess": "Blob"
+				}
+			},
+			{
+				"type": "blobServices/containers",
+				"apiVersion": "2018-03-01-preview",
+				"name": "[concat('default/', parameters('blob3'))]",
+				"dependsOn": [
+					"[parameters('storageAccount')]"
+				],
+				"properties": {
+					"publicAccess": "Blob"
+				}
+			}
+		]
+	}]
+}
