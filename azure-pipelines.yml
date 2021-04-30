@@ -1,0 +1,70 @@
+trigger:
+- none
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+- name: resouceGroup_var
+  value: 'Devops_init' 
+- name: subscriptionID_var
+  value: '68ef03fa-8f28-44b6-a1dd-13113c3eb580'
+
+steps:
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Subscription'
+    azureResourceManagerConnection: 'ARM Template'
+    subscriptionId: ${{ variables.subscriptionID_var }}
+    location: 'South India'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/xxxxxxxxx/master/201-key-vault-secret-create/azuredeploy.json'
+    #csmParametersFileLink: 'https://raw.githubusercontent.com/xxxxxxxxx/master/201-key-vault-secret-create/parameters.json'
+    overrideParameters: '-storageName test3322storage12345 -location eastus'
+    deploymentMode: 'Incremental'
+  displayName: 'Creating Resource Group'
+    
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'ARM Template'
+    subscriptionId: ${{ variables.subscriptionID_var }}
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: ${{ variables.resouceGroup_var }}
+    location: 'South India'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/xxxxxxxxx/master/201-key-vault-secret-create/kv-azuredeploy.json'
+    csmParametersFileLink: 'https://raw.githubusercontent.com/xxxxxxxxx/master/201-key-vault-secret-create/parameters.json'
+    overrideParameters: '-keyvault_name testing5555 -keyName keyVaultK -location eastus'
+    deploymentMode: 'Incremental'
+  displayName: 'Creating Keyvault and Adding key'
+
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'ARM Template'
+    subscriptionId: ${{ variables.subscriptionID_var }}
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: ${{ variables.resouceGroup_var }}
+    location: 'South India'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/xxxxxxxxx/master/201-key-vault-secret-create/blob-azuredeploy.json'
+    #csmParametersFileLink: 'https://raw.githubusercontent.com/xxxxxxxxx/master/201-key-vault-secret-create/parameters.json'
+    overrideParameters: '-storageAccount test3322storage12345'
+    deploymentMode: 'Incremental'
+  displayName: 'Creating blobs in storage account'
+
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'ARM Template'
+    subscriptionId: ${{ variables.subscriptionID_var }}
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: ${{ variables.resouceGroup_var }}
+    location: 'South India'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/xxxxxxxxx/master/201-key-vault-secret-create/acr.json'
+    #csmParametersFileLink: 'https://raw.githubusercontent.com/xxxxxxxxx/master/201-key-vault-secret-create/parameters.json'
+    overrideParameters: '-acrName acrdemo5645'
+    deploymentMode: 'Incremental'
+  displayName: 'Creating ACR'
