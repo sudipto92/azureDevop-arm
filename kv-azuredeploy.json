@@ -1,0 +1,88 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"keyvault_name": {
+			"type": "String"
+		},
+		"location": {
+			"type": "String"
+		},
+		"sku": {
+			"type": "String"
+		},
+		"keyName": {
+			"type": "String"
+		},
+		"accessPolicies": {
+			"type": "Array"
+		},
+		"tenant": {
+			"type": "String"
+		},
+		"enabledForDeployment": {
+			"type": "Bool"
+		},
+		"enabledForTemplateDeployment": {
+			"type": "Bool"
+		},
+		"enabledForDiskEncryption": {
+			"type": "Bool"
+		},
+		"enableRbacAuthorization": {
+			"type": "Bool"
+		},
+		"enableSoftDelete": {
+			"type": "Bool"
+		},
+		"softDeleteRetentionInDays": {
+			"type": "Int"
+		},
+		"networkAcls": {
+			"type": "Object"
+		}
+	},
+	"variables": {},
+	"resources": [{
+			"type": "Microsoft.KeyVault/vaults",
+			"apiVersion": "2018-02-14",
+			"name": "[parameters('keyvault_name')]",
+			"location": "[parameters('location')]",
+			"dependsOn": [],
+			"properties": {
+				"enabledForDeployment": "[parameters('enabledForDeployment')]",
+				"enabledForTemplateDeployment": "[parameters('enabledForTemplateDeployment')]",
+				"enabledForDiskEncryption": "[parameters('enabledForDiskEncryption')]",
+				"enableRbacAuthorization": "[parameters('enableRbacAuthorization')]",
+				"accessPolicies": "[parameters('accessPolicies')]",
+				"tenantId": "[parameters('tenant')]",
+				"sku": {
+					"name": "[parameters('sku')]",
+					"family": "A"
+				},
+				"enableSoftDelete": "[parameters('enableSoftDelete')]",
+				"softDeleteRetentionInDays": "[parameters('softDeleteRetentionInDays')]",
+				"networkAcls": "[parameters('networkAcls')]"
+			}
+		},
+		{
+	            "type": "Microsoft.KeyVault/vaults/keys",
+        	    "apiVersion": "2019-09-01",
+            	    "name": "[concat(parameters('keyvault_name'), '/', parameters('keyName'))]",
+			"dependsOn": [
+				"[resourceId('Microsoft.KeyVault/vaults', parameters('keyvault_name'))]"
+   			],
+			"properties": {
+				"attributes": {
+					"enabled": true
+				},
+				"kty": "RSA",
+				"keyOps": [
+					"encrypt"
+				],
+				"keySize": "2048"
+			}
+		}
+	],
+	"outputs": {}
+}
